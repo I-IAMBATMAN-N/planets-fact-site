@@ -1,0 +1,77 @@
+/*
+TYPOGRAPHY
+Font families:
+Antonio Medium
+- h1 - h2
+
+Spartan Bold
+- h3 - h4
+
+Spartan Regular
+- body text
+
+FontaFamily, Font Size, Lineheight and Spacing
+H1 .heading-primary
+- Antonio Medium FF
+- 80px FS
+- 103px Lh
+
+H2 .heading-secondary
+- Antonio Medium FF
+- 40px FS
+-1.5px spacing
+- 52px Lh
+
+H3 .heading-tertiary
+- Spartan Bold FF
+- 12px FS
+-2.6px spacing
+- 25px Lh
+
+H4 .heading-quaternary
+- Spartan Bold FF
+- 12px FS
+-2.6px spacing
+- 25px Lh
+
+Body Text
+- Spartan Regular FF
+- 14px FS
+- 25px Lh
+
+Colors
+
+Text
+#FFFFFF
+
+Text-Secondary
+#838391
+
+Border
+#38384F
+
+Background
+#070724
+
+*/
+:root {
+  --color-text: #ffffff;
+  --color-text-secondary: #838391;
+  --color-border: #38384f;
+  --color-background: #070724;
+
+  /* Planet Related Colors */
+  --color-mercury: #419ebb;
+  --color-venus: #eda249;
+  --color-earth: #6d2ed5;
+  --color-mars: #d14c32;
+  --color-jupiter: #d83a34;
+  --color-saturn: #cd5120;
+  --color-uranus: #1ec1a2;
+  --color-neputne: #2d68f0;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
