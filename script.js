@@ -233,3 +233,27 @@ const planetInfoLink = document.querySelector(".planet-info--link a");
 const planetParameters = document.querySelectorAll(
   ".planet-parameters--parameter"
 );
+
+navItems.forEach((navItem) => {
+  navItem.addEventListener("click", function (e) {
+    // console.log(String(this.innerText).toLowerCase());
+    planets.forEach((planet) => {
+      const { rotation, revolution, radius, temperature } = planet;
+      const parameters = [rotation, revolution, radius, temperature];
+
+      // console.log(rotation, revolution, radius, temperature);
+      if (planet.name.toLowerCase() === String(this.innerText).toLowerCase()) {
+        // console.log("yes");
+        headingPrimary.innerText = planet.name;
+
+        img.setAttribute("src", `${planet.images.planet}`);
+
+        planetInfoText.innerText = planet.overview.content;
+        planetInfoLink.setAttribute("href", `${planet.overview.source}`);
+        planetParameters.forEach((parameter, index) => {
+          parameter.children[1].innerText = parameters[index];
+        });
+      }
+    });
+  });
+});
