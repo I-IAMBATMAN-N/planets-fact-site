@@ -223,6 +223,7 @@ const planets = [
 
 const navItems = document.querySelectorAll(".main-nav--item");
 const secNavItems = document.querySelectorAll(".secondary-nav--item");
+let secNavItemActive;
 
 const img = document.querySelector(".img-container img");
 
@@ -233,6 +234,26 @@ const planetInfoLink = document.querySelector(".planet-info--link a");
 const planetParameters = document.querySelectorAll(
   ".planet-parameters--parameter"
 );
+
+console.log(secNavItems.length);
+function resetSecondaryNav() {
+  secNavItems.forEach((item, index) => {
+    if (item.classList.contains("active")) {
+      item.classList.remove("active");
+    }
+    if (index === 0) {
+      console.log(index);
+      item.classList.add("active");
+    }
+  });
+  console.log(headingPrimary.innerText.toLowerCase());
+  secNavItemActive = document.querySelector(".secondary-nav--item.active");
+  secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
+
+  // secNavItems[secNavItems.length].classList.add("active");
+}
+
+resetSecondaryNav();
 
 navItems.forEach((navItem) => {
   navItem.addEventListener("click", function (e) {
@@ -257,14 +278,19 @@ navItems.forEach((navItem) => {
         });
       }
     });
+    secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
   });
 });
 secNavItems.forEach((item) => {
   item.addEventListener("click", function (event) {
     secNavItems.forEach((item) => {
+      item.style.backgroundColor = `var(--color-background)`;
       if (item.classList.contains("active")) {
         item.classList.remove("active");
       }
+      event.target.closest(
+        ".secondary-nav--item"
+      ).style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()}`;
       event.target.closest(".secondary-nav--item").classList.add("active");
     });
 
