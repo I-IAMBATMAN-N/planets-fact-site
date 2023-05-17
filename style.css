@@ -170,6 +170,9 @@ body {
 .main-nav--item {
   width: 100%;
 }
+.main-nav--link {
+  text-decoration: none;
+}
 .main-nav--btn {
   display: none;
 }
@@ -261,6 +264,10 @@ body {
 .secondary-nav--item .heading-tertiary span:first-child {
   margin-right: 2.4rem;
   color: var(--color-text-secondary);
+}
+.secondary-nav--link {
+  color: var(--color-text);
+  text-decoration: none;
 }
 .planet-footer {
   width: 100%;
