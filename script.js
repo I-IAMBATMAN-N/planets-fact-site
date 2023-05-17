@@ -241,6 +241,8 @@ navItems.forEach((navItem) => {
       const { rotation, revolution, radius, temperature } = planet;
       const parameters = [rotation, revolution, radius, temperature];
 
+      img.nextElementSibling.style.display = "none";
+
       // console.log(rotation, revolution, radius, temperature);
       if (planet.name.toLowerCase() === String(this.innerText).toLowerCase()) {
         // console.log("yes");
@@ -253,6 +255,71 @@ navItems.forEach((navItem) => {
         planetParameters.forEach((parameter, index) => {
           parameter.children[1].innerText = parameters[index];
         });
+      }
+    });
+  });
+});
+secNavItems.forEach((item) => {
+  item.addEventListener("click", function (event) {
+    secNavItems.forEach((item) => {
+      if (item.classList.contains("active")) {
+        item.classList.remove("active");
+      }
+      event.target.closest(".secondary-nav--item").classList.add("active");
+    });
+
+    planets.forEach((planet) => {
+      const { rotation, revolution, radius, temperature } = planet;
+      const parameters = [rotation, revolution, radius, temperature];
+
+      let string;
+
+      let textString;
+      let sourceString;
+
+      // console.log(rotation, revolution, radius, temperature);
+      if (
+        planet.name.toLowerCase() ===
+        String(headingPrimary.innerText).toLowerCase()
+      ) {
+        if (String(this.innerText).toLowerCase().search("overview") >= 0) {
+          img.setAttribute("src", `${planet.images.planet}`);
+          img.nextElementSibling.style.display = "none";
+
+          textString = planet.overview.content;
+          sourceString = planet.overview.source;
+
+          // console.log("overview");
+        } else if (
+          String(this.innerText).toLowerCase().search("structure") >= 0
+        ) {
+          img.setAttribute("src", `${planet.images.internal}`);
+          img.nextElementSibling.style.display = "none";
+
+          textString = planet.structure.content;
+          sourceString = planet.structure.source;
+
+          // console.log("structure");
+        } else if (
+          String(this.innerText).toLowerCase().search("geology") >= 0
+        ) {
+          img.setAttribute("src", `${planet.images.planet}`);
+
+          img.nextElementSibling.style.display = "block";
+          img.nextElementSibling.setAttribute(
+            "src",
+            `${planet.images.geology}`
+          );
+
+          textString = planet.geology.content;
+          sourceString = planet.geology.source;
+
+          console.log(img.nextElementSibling.getAttribute("src"));
+
+          // console.log("geology");
+        }
+        planetInfoText.innerText = textString;
+        planetInfoLink.setAttribute("src", `${sourceString}`);
       }
     });
   });
