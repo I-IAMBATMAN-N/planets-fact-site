@@ -137,6 +137,8 @@ body {
 
   background-color: var(--color-background);
   border-bottom: solid 0.1rem var(--color-border);
+
+  z-index: 1;
 }
 .main-header .container {
   display: flex;
@@ -210,6 +212,9 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 3.2rem;
+}
+.planet-info--heading {
+  width: 100%;
 }
 .planet-info--section {
   display: flex;
@@ -298,6 +303,68 @@ body {
     flex: 0 0 40%;
   }
   .secondary-nav--item {
+    padding: 1.6rem;
+  }
+}
+@media (max-width: 23.4em) {
+  html {
+    font-size: 42%;
+  }
+  .heading-primary {
+    text-align: center;
+  }
+  .main-header .container {
+    flex-direction: row;
+  }
+  .section {
+    padding-top: 200px;
+    position: relative;
+  }
+  .planet-info--container {
+    flex: 0 0 100%;
+  }
+  .planet-info--section {
+    align-items: center;
+    text-align: center;
+  }
+  .secondary-nav {
+    position: fixed;
+
+    top: 109px;
+    left: 0;
+    right: 0;
+
+    background-color: var(--color-background);
+    border-bottom: solid 0.1rem var(--color-border);
+  }
+  .secondary-nav--list {
+    flex-direction: row;
+
+    justify-content: space-between;
+  }
+  .secondary-nav--item {
+    border: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .secondary-nav--item .heading-tertiary span {
+    display: none;
+  }
+  .planet-parameters {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+  .planet-parameters--parameter {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    padding-bottom: 0;
     padding: 1.6rem;
   }
 }
