@@ -306,7 +306,7 @@ body {
     padding: 1.6rem;
   }
 }
-@media (max-width: 23.4em) {
+@media (max-width: 26.25em) {
   html {
     font-size: 42%;
   }
@@ -340,7 +340,7 @@ body {
   .secondary-nav--list {
     flex-direction: row;
 
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   .secondary-nav--item {
     border: none;
