@@ -251,7 +251,7 @@ body {
   padding: 2.4rem;
   border: solid 0.1rem var(--color-border);
 }
-.secondary-nav--item .heading-tertiary span {
+.secondary-nav--item .heading-tertiary span:first-child {
   margin-right: 2.4rem;
   color: var(--color-text-secondary);
 }
@@ -280,7 +280,7 @@ body {
     font-size: 56%;
   }
 }
-@media (max-width: 48em) {
+@media (max-width: 58em) {
   html {
     font-size: 50%;
   }
