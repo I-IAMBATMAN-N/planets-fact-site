@@ -160,11 +160,18 @@ body {
   font-weight: bold;
 }
 .main-nav--list {
+  width: 100%;
   list-style: none;
 
   display: flex;
   align-items: center;
   gap: 3.2rem;
+}
+.main-nav--item {
+  width: 100%;
+}
+.main-nav--btn {
+  display: none;
 }
 /* ===================== ===================== =====================*/
 /* ===================== Planet Section */
@@ -313,8 +320,60 @@ body {
   .heading-primary {
     text-align: center;
   }
+  .main-header {
+    z-index: 2;
+  }
   .main-header .container {
     flex-direction: row;
+  }
+  .main-nav .mobile {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    height: 100vh;
+    width: 100%;
+
+    padding: 0 4.8rem;
+    padding-top: 100px;
+    padding-bottom: 12.8rem;
+
+    background-color: var(--color-background);
+    z-index: -1;
+  }
+  .main-nav .mobile .main-nav--list {
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0;
+  }
+  .main-nav .mobile .main-nav--item {
+    width: 100%;
+    flex: 1 0 0;
+
+    display: flex;
+    align-items: center;
+    gap: 4.8rem;
+  }
+  .main-nav .mobile .main-nav--item .heading-quaternary {
+    color: var(--color-text);
+  }
+  .main-nav .mobile .main-nav--item:not(:last-child) {
+    border-bottom: solid 0.1rem var(--color-border);
+  }
+  .main-nav .mobile .main-nav--item::before {
+    content: "";
+    display: inline-block;
+
+    width: 2.4rem;
+    height: 2.4rem;
+
+    background-color: var(--color-mercury);
+    border-radius: 50%;
+  }
+  .main-nav .mobile .main-nav--btn {
+    display: block;
   }
   .section {
     padding-top: 200px;
