@@ -409,6 +409,24 @@ body {
     background-color: var(--color-mercury);
     border-radius: 50%;
   }
+  .main-nav .main-nav--item:nth-child(2)::before {
+    background-color: var(--color-venus);
+  }
+  .main-nav .main-nav--item:nth-child(3)::before {
+    background-color: var(--color-earth);
+  }
+  .main-nav .main-nav--item:nth-child(4)::before {
+    background-color: var(--color-mars);
+  }
+  .main-nav .main-nav--item:nth-child(5)::before {
+    background-color: var(--color-jupiter);
+  }
+  .main-nav .main-nav--item:nth-child(6)::before {
+    background-color: var(--color-saturn);
+  }
+  .main-nav .main-nav--item:last-child::before {
+    background-color: var(--color-uranus);
+  }
   .main-nav--btn {
     display: block;
   }
