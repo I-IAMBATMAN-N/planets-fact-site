@@ -222,10 +222,14 @@ const planets = [
 ];
 
 const navItems = document.querySelectorAll(".main-nav--item");
+const mainNav = document.querySelector(".main-nav");
+const navBtn = document.querySelector(".main-nav--btn");
+
 const secNavItems = document.querySelectorAll(".secondary-nav--item");
 let secNavItemActive;
 
 const img = document.querySelector(".img-container img");
+const img2 = img.nextElementSibling;
 
 const headingPrimary = document.querySelector(".heading-primary");
 const planetInfoText = document.querySelector(".planet-info--text");
@@ -235,34 +239,35 @@ const planetParameters = document.querySelectorAll(
   ".planet-parameters--parameter"
 );
 
-console.log(secNavItems.length);
 function resetSecondaryNav() {
   secNavItems.forEach((item, index) => {
     if (item.classList.contains("active")) {
       item.classList.remove("active");
+      item.style.backgroundColor = "var(--color-background)";
     }
     if (index === 0) {
-      console.log(index);
+      // console.log(index);
       item.classList.add("active");
     }
   });
-  console.log(headingPrimary.innerText.toLowerCase());
+  // console.log(headingPrimary.innerText.toLowerCase());
   secNavItemActive = document.querySelector(".secondary-nav--item.active");
   secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
 
   // secNavItems[secNavItems.length].classList.add("active");
 }
-
 resetSecondaryNav();
 
 navItems.forEach((navItem) => {
   navItem.addEventListener("click", function (e) {
     // console.log(String(this.innerText).toLowerCase());
+
+    resetSecondaryNav();
     planets.forEach((planet) => {
       const { rotation, revolution, radius, temperature } = planet;
       const parameters = [rotation, revolution, radius, temperature];
 
-      img.nextElementSibling.style.display = "none";
+      img2.style.display = "none";
 
       // console.log(rotation, revolution, radius, temperature);
       if (planet.name.toLowerCase() === String(this.innerText).toLowerCase()) {
@@ -272,6 +277,7 @@ navItems.forEach((navItem) => {
         img.setAttribute("src", `${planet.images.planet}`);
 
         planetInfoText.innerText = planet.overview.content;
+        //
         planetInfoLink.setAttribute("href", `${planet.overview.source}`);
         planetParameters.forEach((parameter, index) => {
           parameter.children[1].innerText = parameters[index];
@@ -298,50 +304,42 @@ secNavItems.forEach((item) => {
       const { rotation, revolution, radius, temperature } = planet;
       const parameters = [rotation, revolution, radius, temperature];
 
+      const headingText = headingPrimary.innerText.toLowerCase();
+      const thisText = String(this.innerText).toLowerCase();
+
       let string;
 
       let textString;
       let sourceString;
 
       // console.log(rotation, revolution, radius, temperature);
-      if (
-        planet.name.toLowerCase() ===
-        String(headingPrimary.innerText).toLowerCase()
-      ) {
-        if (String(this.innerText).toLowerCase().search("overview") >= 0) {
+      if (headingText === planet.name.toLowerCase()) {
+        if (thisText.search("overview") >= 0) {
           img.setAttribute("src", `${planet.images.planet}`);
-          img.nextElementSibling.style.display = "none";
+          img2.style.display = "none";
 
           textString = planet.overview.content;
           sourceString = planet.overview.source;
 
           // console.log("overview");
-        } else if (
-          String(this.innerText).toLowerCase().search("structure") >= 0
-        ) {
+        } else if (thisText.search("structure") >= 0) {
           img.setAttribute("src", `${planet.images.internal}`);
-          img.nextElementSibling.style.display = "none";
+          img2.style.display = "none";
 
           textString = planet.structure.content;
           sourceString = planet.structure.source;
 
           // console.log("structure");
-        } else if (
-          String(this.innerText).toLowerCase().search("geology") >= 0
-        ) {
+        } else if (thisText.search("surface") >= 0) {
           img.setAttribute("src", `${planet.images.planet}`);
+          img2.style.display = "block";
 
-          img.nextElementSibling.style.display = "block";
-          img.nextElementSibling.setAttribute(
-            "src",
-            `${planet.images.geology}`
-          );
+          img2.setAttribute("src", `${planet.images.geology}`);
 
           textString = planet.geology.content;
           sourceString = planet.geology.source;
 
-          console.log(img.nextElementSibling.getAttribute("src"));
-
+          // console.log(img2.getAttribute("src"));
           // console.log("geology");
         }
         planetInfoText.innerText = textString;
@@ -349,4 +347,9 @@ secNavItems.forEach((item) => {
       }
     });
   });
+});
+
+navBtn.addEventListener("click", function (e) {
+  console.log(this);
+  mainNav.classList.toggle("active");
 });

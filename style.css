@@ -357,7 +357,7 @@ body {
   .main-header .container {
     flex-direction: row;
   }
-  .main-nav .mobile {
+  .main-nav {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -372,14 +372,20 @@ body {
 
     background-color: var(--color-background);
     z-index: -1;
+
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
-  .main-nav .mobile .main-nav--list {
+  .main-nav.active {
+    transform: translateX(0%);
+  }
+  .main-nav .main-nav--list {
     height: 100%;
     flex-direction: column;
     justify-content: space-evenly;
     gap: 0;
   }
-  .main-nav .mobile .main-nav--item {
+  .main-nav .main-nav--item {
     width: 100%;
     flex: 1 0 0;
 
@@ -387,13 +393,13 @@ body {
     align-items: center;
     gap: 4.8rem;
   }
-  .main-nav .mobile .main-nav--item .heading-quaternary {
+  .main-nav .main-nav--item .heading-quaternary {
     color: var(--color-text);
   }
-  .main-nav .mobile .main-nav--item:not(:last-child) {
+  .main-nav .main-nav--item:not(:last-child) {
     border-bottom: solid 0.1rem var(--color-border);
   }
-  .main-nav .mobile .main-nav--item::before {
+  .main-nav .main-nav--item::before {
     content: "";
     display: inline-block;
 
@@ -403,13 +409,13 @@ body {
     background-color: var(--color-mercury);
     border-radius: 50%;
   }
-  .main-nav .mobile .main-nav--btn {
+  .main-nav--btn {
     display: block;
   }
   .section {
     gap: 3.2rem;
     height: fit-content;
-    padding-top: 170px;
+    padding-top: 99px;
     position: relative;
   }
   .planet-container {
@@ -429,7 +435,7 @@ body {
   .secondary-nav {
     position: fixed;
 
-    top: 109px;
+    top: 74px;
     left: 0;
     right: 0;
 
