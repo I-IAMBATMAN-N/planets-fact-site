@@ -198,18 +198,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
 .img-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   flex: 1 0 0;
   height: 100%;
 
   position: relative;
 }
-.img-container img {
+.img-container img:first-child {
+  display: block;
   width: 29rem;
 
   position: absolute;
@@ -224,15 +227,7 @@ body {
   width: 16.3rem;
   height: 19.9rem;
 
-  transform: translateY(-32%);
-  transform: translate(-50%, 32%);
-}
-.img-container {
-  flex: 1 0 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transform: translateY(82%);
 }
 .planet-info {
   flex: 0 0 30%;
@@ -334,6 +329,7 @@ body {
     height: auto;
   }
   .planet-container {
+    flex: 1 0 0;
     flex-direction: column;
     gap: 12rem;
   }
@@ -411,8 +407,17 @@ body {
     display: block;
   }
   .section {
-    padding-top: 200px;
+    gap: 3.2rem;
+    height: fit-content;
+    padding-top: 170px;
     position: relative;
+  }
+  .planet-container {
+    gap: 4.8rem;
+  }
+  .img-container {
+    width: 100%;
+    flex: 0 0 350px;
   }
   .planet-info--container {
     flex: 0 0 100%;
