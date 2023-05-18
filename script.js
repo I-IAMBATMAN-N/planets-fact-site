@@ -353,3 +353,9 @@ navBtn.addEventListener("click", function (e) {
   console.log(this);
   mainNav.classList.toggle("active");
 });
+navItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    console.log(this);
+    mainNav.classList.toggle("active");
+  });
+});
