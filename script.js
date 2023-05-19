@@ -256,7 +256,10 @@ function resetSecondaryNav() {
 
   // secNavItems[secNavItems.length].classList.add("active");
 }
-resetSecondaryNav();
+
+window.addEventListener("load", function () {
+  resetSecondaryNav();
+});
 
 navItems.forEach((navItem) => {
   navItem.addEventListener("click", function (e) {
@@ -284,6 +287,9 @@ navItems.forEach((navItem) => {
         });
       }
     });
+    // console.log(
+    //   Math.round(planetInfoText.getBoundingClientRect().height / (1.8 * 14))
+    // );
     secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
   });
 });
@@ -355,7 +361,7 @@ navBtn.addEventListener("click", function (e) {
 });
 navItems.forEach((item) => {
   item.addEventListener("click", function () {
-    console.log(this);
+    // console.log(this);
     mainNav.classList.toggle("active");
   });
 });
