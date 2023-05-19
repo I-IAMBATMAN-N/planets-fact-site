@@ -349,7 +349,7 @@ secNavItems.forEach((item) => {
           // console.log("geology");
         }
         planetInfoText.innerText = textString;
-        planetInfoLink.setAttribute("src", `${sourceString}`);
+        planetInfoLink.setAttribute("href", `${sourceString}`);
       }
     });
   });
