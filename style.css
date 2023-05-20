@@ -91,6 +91,10 @@ body {
   font-size: 1.4rem;
   line-height: 1.8;
   color: var(--color-text);
+
+  background-image: url(assets/background-stars.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .heading-primary,
 .heading-secondary,
