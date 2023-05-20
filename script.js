@@ -239,22 +239,21 @@ const planetParameters = document.querySelectorAll(
   ".planet-parameters--parameter"
 );
 
-function setColor(item) {
-  if (window.innerWidth > 420) {
-    console.log("background");
-    secNavItems.forEach((navItem) => {
-      navItem.style.backgroundColor = `var(--color-background)`;
-    });
-    item.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
-  } else if (window.innerWidth <= 420) {
-    console.log("box shadow");
-    secNavItems.forEach((navItem) => {
-      navItem.style.boxShadow = `none`;
-    });
-    item.style.boxShadow = `inset 0px -0.4rem 0rem 0rem var(--color-${headingPrimary.innerText.toLowerCase()})`;
-  }
+function navBtnListener() {
+  navBtn.addEventListener("click", function (e) {
+    // console.log(this);
+    mainNav.classList.toggle("active");
+  });
 }
 
+function mobileNavItemsListener() {
+  navItems.forEach((item) => {
+    item.addEventListener("touchstart", function () {
+      console.log("mobile", this);
+      mainNav.classList.toggle("active");
+    });
+  });
+}
 function resetSecondaryNav() {
   secNavItems.forEach((item, index) => {
     if (item.classList.contains("active")) {
@@ -271,104 +270,134 @@ function resetSecondaryNav() {
   setColor(secNavItemActive);
   // secNavItems[secNavItems.length].classList.add("active");
 }
+
+function setColor(item) {
+  if (window.innerWidth > 420) {
+    // console.log("background");
+    secNavItems.forEach((navItem) => {
+      navItem.style.backgroundColor = `var(--color-background)`;
+    });
+    item.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
+  } else if (window.innerWidth <= 420) {
+    // console.log("box shadow");
+    secNavItems.forEach((navItem) => {
+      navItem.style.boxShadow = `none`;
+    });
+    item.style.boxShadow = `inset 0px -0.4rem 0rem 0rem var(--color-${headingPrimary.innerText.toLowerCase()})`;
+  }
+}
+
+//
+function mainNavListener() {
+  function changePageContent(planet, thisO) {
+    const { rotation, revolution, radius, temperature } = planet;
+    const parameters = [rotation, revolution, radius, temperature];
+
+    const planetNameLower = planet.name.toLowerCase();
+    const thisTextLower = String(thisO.innerText).toLowerCase();
+    //
+    if (planetNameLower === thisTextLower) {
+      // console.log("yes");
+      // display image
+      img.setAttribute("src", `${planet.images.planet}`);
+      // display main heading
+      headingPrimary.innerText = planet.name;
+      //display panet info text
+      planetInfoText.innerText = planet.overview.content;
+      //display Wikipedia link source
+      planetInfoLink.setAttribute("href", `${planet.overview.source}`);
+      //display planet parameters
+      planetParameters.forEach((parameter, index) => {
+        parameter.children[1].innerText = parameters[index];
+      });
+    }
+  }
+
+  navItems.forEach((navItem) => {
+    navItem.addEventListener("click", function (e) {
+      // console.log(String(this.innerText).toLowerCase());
+      planets.forEach((planet) => {
+        img2.style.display = "none";
+        changePageContent(planet, this);
+        // console.log(rotation, revolution, radius, temperature);
+      });
+      resetSecondaryNav();
+    });
+  });
+}
+
+function secNavListener() {
+  function changeSectionContent(planet, thisText) {
+    //
+    let textString;
+    let sourceString;
+    const headingText = headingPrimary.innerText.toLowerCase();
+    //
+    if (headingText === planet.name.toLowerCase()) {
+      if (thisText.search("overview") >= 0) {
+        img.setAttribute("src", `${planet.images.planet}`);
+        img2.style.display = "none";
+
+        textString = planet.overview.content;
+        sourceString = planet.overview.source;
+
+        // console.log("overview");
+      } else if (thisText.search("structure") >= 0) {
+        img.setAttribute("src", `${planet.images.internal}`);
+        img2.style.display = "none";
+
+        textString = planet.structure.content;
+        sourceString = planet.structure.source;
+
+        // console.log("structure");
+      } else if (thisText.search("surface") >= 0) {
+        img.setAttribute("src", `${planet.images.planet}`);
+        img2.style.display = "block";
+
+        img2.setAttribute("src", `${planet.images.geology}`);
+
+        textString = planet.geology.content;
+        sourceString = planet.geology.source;
+
+        // console.log(img2.getAttribute("src"));
+        // console.log("geology");
+      }
+      planetInfoText.innerText = textString;
+      planetInfoLink.setAttribute("href", `${sourceString}`);
+    }
+  }
+  //
+  secNavItems.forEach((item) => {
+    item.addEventListener("click", function (event) {
+      //
+
+      secNavItems.forEach((item) => {
+        // item.style.backgroundColor = `var(--color-background)`;
+        if (item.classList.contains("active")) {
+          item.classList.remove("active");
+        }
+        event.target.closest(".secondary-nav--item").classList.add("active");
+        setColor(event.target.closest(".secondary-nav--item"));
+      });
+
+      planets.forEach((planet) => {
+        const thisText = String(this.innerText).toLowerCase();
+
+        // console.log(rotation, revolution, radius, temperature);
+        changeSectionContent(planet, thisText);
+      });
+    });
+  });
+}
+
 window.addEventListener("load", function () {
   resetSecondaryNav();
-});
+  navBtnListener();
+  mobileNavItemsListener();
 
-navItems.forEach((navItem) => {
-  navItem.addEventListener("click", function (e) {
-    // console.log(String(this.innerText).toLowerCase());
-    planets.forEach((planet) => {
-      const { rotation, revolution, radius, temperature } = planet;
-      const parameters = [rotation, revolution, radius, temperature];
+  //
+  mainNavListener();
 
-      img2.style.display = "none";
-
-      // console.log(rotation, revolution, radius, temperature);
-      if (planet.name.toLowerCase() === String(this.innerText).toLowerCase()) {
-        // console.log("yes");
-        headingPrimary.innerText = planet.name;
-
-        img.setAttribute("src", `${planet.images.planet}`);
-
-        planetInfoText.innerText = planet.overview.content;
-        //
-        planetInfoLink.setAttribute("href", `${planet.overview.source}`);
-        planetParameters.forEach((parameter, index) => {
-          parameter.children[1].innerText = parameters[index];
-        });
-      }
-    });
-    resetSecondaryNav();
-  });
-});
-secNavItems.forEach((item) => {
-  item.addEventListener("click", function (event) {
-    secNavItems.forEach((item) => {
-      item.style.backgroundColor = `var(--color-background)`;
-      if (item.classList.contains("active")) {
-        item.classList.remove("active");
-      }
-      event.target.closest(".secondary-nav--item").classList.add("active");
-      setColor(event.target.closest(".secondary-nav--item"));
-    });
-
-    planets.forEach((planet) => {
-      const { rotation, revolution, radius, temperature } = planet;
-      const parameters = [rotation, revolution, radius, temperature];
-
-      const headingText = headingPrimary.innerText.toLowerCase();
-      const thisText = String(this.innerText).toLowerCase();
-
-      let string;
-
-      let textString;
-      let sourceString;
-
-      // console.log(rotation, revolution, radius, temperature);
-      if (headingText === planet.name.toLowerCase()) {
-        if (thisText.search("overview") >= 0) {
-          img.setAttribute("src", `${planet.images.planet}`);
-          img2.style.display = "none";
-
-          textString = planet.overview.content;
-          sourceString = planet.overview.source;
-
-          // console.log("overview");
-        } else if (thisText.search("structure") >= 0) {
-          img.setAttribute("src", `${planet.images.internal}`);
-          img2.style.display = "none";
-
-          textString = planet.structure.content;
-          sourceString = planet.structure.source;
-
-          // console.log("structure");
-        } else if (thisText.search("surface") >= 0) {
-          img.setAttribute("src", `${planet.images.planet}`);
-          img2.style.display = "block";
-
-          img2.setAttribute("src", `${planet.images.geology}`);
-
-          textString = planet.geology.content;
-          sourceString = planet.geology.source;
-
-          // console.log(img2.getAttribute("src"));
-          // console.log("geology");
-        }
-        planetInfoText.innerText = textString;
-        planetInfoLink.setAttribute("href", `${sourceString}`);
-      }
-    });
-  });
-});
-
-navBtn.addEventListener("click", function (e) {
-  console.log(this);
-  mainNav.classList.toggle("active");
-});
-navItems.forEach((item) => {
-  item.addEventListener("click", function () {
-    // console.log(this);
-    mainNav.classList.toggle("active");
-  });
+  //
+  secNavListener();
 });
