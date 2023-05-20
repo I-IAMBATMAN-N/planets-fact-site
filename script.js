@@ -271,7 +271,6 @@ function resetSecondaryNav() {
   setColor(secNavItemActive);
   // secNavItems[secNavItems.length].classList.add("active");
 }
-
 window.addEventListener("load", function () {
   resetSecondaryNav();
 });
@@ -279,8 +278,6 @@ window.addEventListener("load", function () {
 navItems.forEach((navItem) => {
   navItem.addEventListener("click", function (e) {
     // console.log(String(this.innerText).toLowerCase());
-
-    resetSecondaryNav();
     planets.forEach((planet) => {
       const { rotation, revolution, radius, temperature } = planet;
       const parameters = [rotation, revolution, radius, temperature];
@@ -302,11 +299,7 @@ navItems.forEach((navItem) => {
         });
       }
     });
-    // console.log(
-    //   Math.round(planetInfoText.getBoundingClientRect().height / (1.8 * 14))
-    // );
-    // secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
-    setColor();
+    resetSecondaryNav();
   });
 });
 secNavItems.forEach((item) => {
