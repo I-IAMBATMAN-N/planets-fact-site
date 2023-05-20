@@ -239,6 +239,22 @@ const planetParameters = document.querySelectorAll(
   ".planet-parameters--parameter"
 );
 
+function setColor(item) {
+  if (window.innerWidth > 420) {
+    console.log("background");
+    secNavItems.forEach((navItem) => {
+      navItem.style.backgroundColor = `var(--color-background)`;
+    });
+    item.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
+  } else if (window.innerWidth <= 420) {
+    console.log("box shadow");
+    secNavItems.forEach((navItem) => {
+      navItem.style.boxShadow = `none`;
+    });
+    item.style.boxShadow = `inset 0px -0.4rem 0rem 0rem var(--color-${headingPrimary.innerText.toLowerCase()})`;
+  }
+}
+
 function resetSecondaryNav() {
   secNavItems.forEach((item, index) => {
     if (item.classList.contains("active")) {
@@ -252,8 +268,7 @@ function resetSecondaryNav() {
   });
   // console.log(headingPrimary.innerText.toLowerCase());
   secNavItemActive = document.querySelector(".secondary-nav--item.active");
-  secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
-
+  setColor(secNavItemActive);
   // secNavItems[secNavItems.length].classList.add("active");
 }
 
@@ -290,7 +305,8 @@ navItems.forEach((navItem) => {
     // console.log(
     //   Math.round(planetInfoText.getBoundingClientRect().height / (1.8 * 14))
     // );
-    secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
+    // secNavItemActive.style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()})`;
+    setColor();
   });
 });
 secNavItems.forEach((item) => {
@@ -300,10 +316,8 @@ secNavItems.forEach((item) => {
       if (item.classList.contains("active")) {
         item.classList.remove("active");
       }
-      event.target.closest(
-        ".secondary-nav--item"
-      ).style.backgroundColor = `var(--color-${headingPrimary.innerText.toLowerCase()}`;
       event.target.closest(".secondary-nav--item").classList.add("active");
+      setColor(event.target.closest(".secondary-nav--item"));
     });
 
     planets.forEach((planet) => {

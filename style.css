@@ -389,6 +389,7 @@ body {
     padding-bottom: 12.8rem;
 
     background-color: var(--color-background);
+
     z-index: -1;
 
     transform: translateX(-100%);
