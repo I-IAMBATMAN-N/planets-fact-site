@@ -298,6 +298,23 @@ function mainNavListener() {
     //
     if (planetNameLower === thisTextLower) {
       // console.log("yes");
+
+      const radius = planet.radius.slice(0, -2).replace(",", "");
+
+      if (radius < 5000) {
+        //
+        img.style.width = "40%";
+      } else if (radius < 10000) {
+        //
+        img.style.width = "55%";
+      } else if (radius > 30000) {
+        //
+        img.style.width = "70%";
+      } else if (radius > 70000) {
+        //
+        img.style.width = "85%";
+      }
+
       // display image
       img.setAttribute("src", `${planet.images.planet}`);
       // display main heading
@@ -400,4 +417,14 @@ window.addEventListener("load", function () {
 
   //
   secNavListener();
+});
+
+planets.forEach((planet) => {
+  //
+  const radius = planet.radius.slice(0, -2).replace(",", "");
+
+  console.log(planet.name);
+  console.log(Number(radius));
+
+  // console.log(planet.radius.slice(0, -2));
 });
