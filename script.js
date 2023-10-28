@@ -249,7 +249,7 @@ function navBtnListener() {
 function mobileNavItemsListener() {
   navItems.forEach((item) => {
     item.addEventListener("touchstart", function () {
-      console.log("mobile", this);
+      // console.log("mobile", this);
       mainNav.classList.toggle("active");
     });
   });
@@ -423,8 +423,8 @@ planets.forEach((planet) => {
   //
   const radius = planet.radius.slice(0, -2).replace(",", "");
 
-  console.log(planet.name);
-  console.log(Number(radius));
+  // console.log(planet.name);
+  // console.log(Number(radius));
 
   // console.log(planet.radius.slice(0, -2));
 });
