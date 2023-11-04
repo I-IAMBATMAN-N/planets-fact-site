@@ -299,7 +299,7 @@ function mainNavListener() {
     if (planetNameLower === thisTextLower) {
       // console.log("yes");
 
-      const radius = planet.radius.slice(0, -2).replace(",", "");
+      const radius = Number(planet.radius.slice(0, -2).replace(",", ""));
 
       if (radius < 5000) {
         //
