@@ -350,6 +350,9 @@ body {
   flex-direction: column;
   gap: 2.4rem;
 }
+.planet-info--text {
+  min-height: 18rem;
+}
 .planet-info--link {
   display: -webkit-box;
   display: -ms-flexbox;
