@@ -484,6 +484,9 @@ body {
     -ms-flex: 0 0 40%;
     flex: 0 0 40%;
   }
+  .planet-info--text {
+    min-height: 0rem;
+  }
   .secondary-nav--item {
     padding: 1.6rem;
   }
